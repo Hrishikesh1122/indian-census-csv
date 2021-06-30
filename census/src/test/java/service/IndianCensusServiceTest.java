@@ -16,5 +16,17 @@ public class IndianCensusServiceTest {
 		int result = census.getSizeOfCsv("IndiaStateCensusData.csv");
 		Assert.assertEquals(29, result);
 	}
+	
+	@Test
+	public void given_IndianCensusCSVFile_WhenIncorrect_ThrowsCustomException() {
+		try {
+			@SuppressWarnings("unused")
+			int result = census.getSizeOfCsv("IndiaStateCensusdddata.csv");
+		}
+		catch(CustomCsvException e) {
+			Assert.assertEquals(CustomCsvException.ExceptionType.INCORRECT_FILE, e.type);
+		}
+		
+	}
 
 }

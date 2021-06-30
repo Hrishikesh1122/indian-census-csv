@@ -38,5 +38,16 @@ public class IndianCensusServiceTest {
 			Assert.assertEquals(CustomCsvException.ExceptionType.INCORRECT_FILE, e.type);
 		}	
 	}
+	
+	@Test
+	public void given_IndianCensusCSVFile_WhenCorrectButDelimitorIsIncorrect_ThrowsCustomException() {
+		try {
+			@SuppressWarnings("unused")
+			int result = census.getSizeOfCsv("IndiaStateCensusDataIncorrectDelimitor.csv");
+		}
+		catch(CustomCsvException e) {
+			Assert.assertEquals(CustomCsvException.ExceptionType.IMPROPER_CSV, e.type);
+		}	
+	}
 
 }

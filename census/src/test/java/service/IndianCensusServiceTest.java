@@ -49,5 +49,11 @@ public class IndianCensusServiceTest {
 			Assert.assertEquals(CustomCsvException.ExceptionType.IMPROPER_CSV, e.type);
 		}	
 	}
+	
+	@Test
+	public void  given_IndianStateCodeCSVFile_ReturnsNumberOfRecords() throws CustomCsvException{
+		int result = census.getSizeOfIndianStateCodeCsv("IndiaStateCode.csv");
+		Assert.assertEquals(37, result);
+	}
 
 }

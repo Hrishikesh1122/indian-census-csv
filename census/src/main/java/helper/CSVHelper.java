@@ -10,6 +10,7 @@ package helper;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import model.IndianCensusCSVModel;
@@ -36,8 +37,14 @@ public class CSVHelper<E> {
 				line = reader.readLine();
 			}
 		}
-		catch(Exception e) {
-			throw new CustomCsvException("File not found");
+		catch(IOException e) {
+			throw new CustomCsvException(e.getMessage(),CustomCsvException.ExceptionType.INCORRECT_FILE);
+		}
+		catch(RuntimeException e) {
+			throw new CustomCsvException(e.getMessage(),CustomCsvException.ExceptionType.IMPROPER_CSV);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		return returnList;

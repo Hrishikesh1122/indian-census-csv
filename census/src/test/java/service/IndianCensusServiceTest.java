@@ -25,8 +25,18 @@ public class IndianCensusServiceTest {
 		}
 		catch(CustomCsvException e) {
 			Assert.assertEquals(CustomCsvException.ExceptionType.INCORRECT_FILE, e.type);
+		}	
+	}
+	
+	@Test
+	public void given_IndianCensusCSVFile_WhenTypeIsIncorrect_ThrowsCustomException() {
+		try {
+			@SuppressWarnings("unused")
+			int result = census.getSizeOfCsv("IndiaStateCensusData.txt");
 		}
-		
+		catch(CustomCsvException e) {
+			Assert.assertEquals(CustomCsvException.ExceptionType.INCORRECT_FILE, e.type);
+		}	
 	}
 
 }
